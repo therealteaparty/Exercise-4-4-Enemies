@@ -7,7 +7,7 @@ func _ready():
 	await enemy.ready
 
 func start():
-	pass
+	enemy.set_animation("Moving")
 
 func physics_process(_delta):
 	if enemy.should_attack():

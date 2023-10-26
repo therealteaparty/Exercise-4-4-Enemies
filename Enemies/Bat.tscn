@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3tf31w2kdtx1"]
+[gd_scene load_steps=37 format=3 uid="uid://c3tf31w2kdtx1"]
 
-[ext_resource type="Texture2D" uid="uid://b4qe04us7ia2t" path="res://Assets/bat_move.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bge2w414lirjr" path="res://Assets/bat_attack.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://de3ah5l1x2cpw" path="res://Assets/bat_die.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cosb5rh3lanch" path="res://Assets/bat_move.png" id="1"]
+[ext_resource type="Script" path="res://Enemies/Bat.gd" id="1_a703g"]
+[ext_resource type="Texture2D" uid="uid://btexw4c3ojndc" path="res://Assets/bat_attack.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d3sgcutemywje" path="res://Assets/bat_die.png" id="4"]
 
 [sub_resource type="AtlasTexture" id="64"]
 atlas = ExtResource("3")
@@ -229,6 +230,7 @@ size = Vector2(120, 32)
 
 [node name="Bat" type="CharacterBody2D"]
 position = Vector2(1, 4)
+script = ExtResource("1_a703g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
@@ -257,4 +259,8 @@ one_shot = true
 position = Vector2(-5, -52)
 shape = SubResource("84")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_entered" from="Above_and_Below" to="." method="_on_above_and_below_body_entered"]
